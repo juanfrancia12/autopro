@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+    @apply box-border;
+    @apply text-primary-700;
+    // @apply bg-gray-100;
+    // @apply max-w-screen-2xl;
+  }
+}
