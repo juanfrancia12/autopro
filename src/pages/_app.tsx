@@ -1,6 +1,4 @@
 import '../../styles/styles.scss'
-// Import Swiper styles
-import 'swiper/css'
 
 import Footer from '@components/molecules/footer/Footer'
 import Header from '@components/molecules/header/Header'

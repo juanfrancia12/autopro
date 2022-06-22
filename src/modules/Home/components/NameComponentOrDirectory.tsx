@@ -1,6 +1,4 @@
 import Image from 'next/image'
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react'
 
 const NameComponentOrDirectory = () => {
   return (
@@ -140,48 +138,48 @@ const NameComponentOrDirectory = () => {
           <p className="text-center">Contamos con excelentes profersionales</p>
         </div>
         <section className="w-full overflow-hidden">
-          <div className="container h-[44rem] mx-auto">
-            <div className="h-full grid grid-cols-3 gap-5">
-              <div className="w-full rounded-2xl border border-gray-300 overflow-hidden">
+          <div className="container mx-auto">
+            <div className="grid grid-cols-3 gap-5">
+              <div className="w-full h-[22rem] rounded-2xl border border-gray-300 overflow-hidden">
                 <img
                   alt="gallery"
                   className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+                  src="/images/home/servicio-1.jpg"
                 />
               </div>
-              <div className="w-full rounded-2xl border border-gray-300 overflow-hidden">
+              <div className="w-full h-[22rem] rounded-2xl border border-gray-300 overflow-hidden">
                 <img
                   alt="gallery"
                   className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(74).webp"
+                  src="/images/home/servicio-2.jpg"
                 />
               </div>
-              <div className="w-full rounded-2xl border border-gray-300 overflow-hidden">
+              <div className="w-full h-[22rem] rounded-2xl border border-gray-300 overflow-hidden">
                 <img
                   alt="gallery"
                   className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(75).webp"
+                  src="/images/home/servicio-3.jpg"
                 />
               </div>
-              <div className="w-full rounded-2xl border border-gray-300 overflow-hidden">
+              <div className="w-full h-[22rem] rounded-2xl border border-gray-300 overflow-hidden">
                 <img
                   alt="gallery"
                   className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(70).webp"
+                  src="/images/home/servicio-4.webp"
                 />
               </div>
-              <div className="w-full rounded-2xl border border-gray-300 overflow-hidden">
+              <div className="w-full h-[22rem] rounded-2xl border border-gray-300 overflow-hidden">
                 <img
                   alt="gallery"
                   className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(76).webp"
+                  src="/images/home/servicio-5.jpg"
                 />
               </div>
-              <div className="w-full rounded-2xl border border-gray-300 overflow-hidden">
+              <div className="w-full h-[22rem] rounded-2xl border border-gray-300 overflow-hidden">
                 <img
                   alt="gallery"
                   className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(72).webp"
+                  src="/images/home/servicio-6.jpg"
                 />
               </div>
             </div>
@@ -195,17 +193,34 @@ const NameComponentOrDirectory = () => {
           Conoce todos nuestros servicios
         </button>
       </section>
-      <Swiper
-        spaceBetween={50}
-        slidesPerView={3}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={swiper => console.log(swiper)}
-      >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-      </Swiper>
+      <section className="py-20 px-60 bg-primary-200 grid grid-cols-2 gap-5">
+        <div className="w-full h-auto rounded-2xl border border-gray-300 overflow-hidden">
+          <img
+            alt="gallery"
+            className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
+            src="/images/home/sobre_nosotros.jpg"
+          />
+        </div>
+        <div className="flex flex-col gap-4 justify-center">
+          <h3 className="text-xl font-bold">SOBRE NOSOTROS</h3>
+          <p className="text-lg">
+            Somos una empresa peruana dedicada al rubro automotriz. Nuestra misión es ofrecer los
+            mejores productos y servicios a nuestros clientes, procurando tengan la mejor
+            experiencia en todo momento...
+          </p>
+          <button
+            type="button"
+            className={`w-max min-w-[8rem] text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-4 py-2 text-center
+            `}
+          >
+            Ver más
+          </button>
+        </div>
+      </section>
+      <section className="py-20 grid gap-14">
+        <h2 className="text-xl font-bold text-center">NUESTROS PROVEEDORES</h2>
+        <section className="w-full h-52 bg-blue-300">Slider 2</section>
+      </section>
     </>
   )
 }
