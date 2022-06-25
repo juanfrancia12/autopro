@@ -1,8 +1,8 @@
-import NameComponentOrDirectory from '@modules/Home/components/NameComponentOrDirectory'
+import HomeView from '@modules/Home/components/HomeView'
 import type { NextPage } from 'next'
 
 const HomePage: NextPage = () => {
-  return <NameComponentOrDirectory />
+  return <HomeView />
 }
 
 export default HomePage

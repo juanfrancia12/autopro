@@ -8,6 +8,7 @@ const Header = (props: Props) => {
 
   const changeNavbarColor = () => {
     if (window.scrollY >= 80) {
+      // 80
       setColorChange(true)
     } else {
       setColorChange(false)
@@ -29,9 +30,8 @@ const Header = (props: Props) => {
   return (
     // <header className="w-11/12 h-20 m-auto border-b border-[#718096] bg-red-200 backdrop-blur-sm bg-primary-600/30">Header</header>
     <header
-      className={`w-full h-20 px-60 fixed top-0 left-0  right-0 transition-colors duration-500 ${
-        colorChange && 'bg-white text-primary-700'
-      } `}
+      className={`w-full h-20 px-60 fixed top-0 left-0  right-0 transition-colors duration-500 
+      ${colorChange ? 'bg-white text-primary-700 hidden' : ''} `}
     >
       <div className="mx-auto h-full border-b border-primary-600 flex justify-between items-center gap-2">
         <section
