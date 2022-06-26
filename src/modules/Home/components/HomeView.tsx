@@ -4,7 +4,7 @@ const NameComponentOrDirectory = () => {
   return (
     <>
       {/* BANNER */}
-      <section className="w-full min-h-[35rem] py-20 bg-gradient-to-tr from-primary-600 to-primary-800 grid place-content-center responsive-screen-width">
+      <section className="w-full min-h-[35rem] pt-28 pb-20 bg-gradient-to-tr from-primary-600 to-primary-800 grid place-content-center responsive-screen-width">
         <div className="w-full flex flex-col md:flex-row justify-between mx-auto gap-12 md:gap-0">
           <div className="w-12/12 md:w-6/12 grid text-gray-100 gap-8">
             <h1 className="text-center text-xl md:text-3xl md:text-start lg:text-4xl font-bold">

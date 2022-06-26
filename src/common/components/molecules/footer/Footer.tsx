@@ -106,7 +106,7 @@ type Props = {}
 
 const Footer = (props: Props) => {
   return (
-    <footer className=" bg-primary-800 text-gray-600 responsive-width">
+    <footer className=" bg-primary-800 text-gray-600 responsive-screen-width responsive-screen-height">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div className="h-full flex flex-col">
           <h6 className="text-center md:text-left uppercase font-semibold mb-4 text-gray-100 md:justify-start">
