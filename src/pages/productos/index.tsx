@@ -1,5 +1,7 @@
+import ProductView from '@modules/Products/ProductView'
+
 const ProductPage = () => {
-  return <div></div>
+  return <ProductView />
 }
 
 export default ProductPage

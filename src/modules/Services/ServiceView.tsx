@@ -46,7 +46,7 @@ const ServiceView = () => {
       <section className="w-full min-h-[27rem] pt-28 pb-16 bg-gradient-to-tr from-primary-600 to-primary-800 grid place-items-center responsive-screen-width">
         <div className="grid gap-6">
           <h1 className="text-gray-100 text-center text-xl md:text-3xl md:text-start lg:text-4xl font-bold">
-            MECÁNICA AUTOMOTRIZ
+            NUESTROS SERVICIOS
           </h1>
           <div className="w-3/6 m-auto flex-grow border-t-2 border-gray-100"></div>
         </div>
