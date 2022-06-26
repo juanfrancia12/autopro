@@ -1,5 +1,8 @@
+import ServiceView from '@modules/Services/ServiceView'
+import type { NextPage } from 'next'
+
 const ServicePage = () => {
-  return <div></div>
+  return <ServiceView />
 }
 
 export default ServicePage

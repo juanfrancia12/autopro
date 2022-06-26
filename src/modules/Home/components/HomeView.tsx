@@ -132,7 +132,7 @@ const NameComponentOrDirectory = () => {
         </div>
         <section className="w-full overflow-hidden">
           <div className="container mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               <div className="h-[15rem] md:h-[22rem] rounded-2xl border border-gray-300 overflow-hidden">
                 <img
                   alt="gallery"

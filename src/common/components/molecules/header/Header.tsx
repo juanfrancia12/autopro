@@ -42,11 +42,7 @@ function NavLink({ to, children, styles }: any) {
   return (
     <li>
       <Link href={to}>
-        <a
-          className={`${styles} ${
-            pathname === to ? 'border-b-2 font-bold border-primary-700' : ''
-          }`}
-        >
+        <a className={`${styles} ${pathname === to ? 'border-b-2 font-bold border-gray-100' : ''}`}>
           {children}
         </a>
       </Link>
