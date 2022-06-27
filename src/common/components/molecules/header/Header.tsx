@@ -36,13 +36,16 @@ const ITEMS_NAVLINK = [
   }
 ]
 
-function NavLink({ to, children, styles }: any) {
+function NavLink({ to, children, styles, onClick }: any) {
   const { pathname } = useRouter()
 
   return (
     <li>
       <Link href={to}>
-        <a className={`${styles} ${pathname === to ? 'border-b-2 font-bold border-gray-100' : ''}`}>
+        <a
+          className={`${styles} ${pathname === to ? 'border-b-2 font-bold border-gray-100' : ''}`}
+          onClick={onClick}
+        >
           {children}
         </a>
       </Link>
@@ -91,7 +94,7 @@ const MobileNav = ({ open, setOpen }: any) => {
           {ITEMS_NAVLINK.map(item => {
             const { id, name, link } = item
             return (
-              <NavLink key={id} to={link} styles="text-xl">
+              <NavLink key={id} to={link} styles="text-xl" onClick={() => setOpen(!open)}>
                 {name}
               </NavLink>
             )

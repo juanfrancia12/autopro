@@ -3,6 +3,7 @@ import '../../styles/styles.scss'
 import Footer from '@components/molecules/footer/Footer'
 import Header from '@components/molecules/header/Header'
 import type { AppProps } from 'next/app'
+import Head from 'next/head'
 import Router from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -13,6 +14,9 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
+      <Head>
+        <title>AUTOPRO</title>
+      </Head>
       <Header />
       <main>{children}</main>
       <Footer />
@@ -62,8 +66,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Layout>
-        {/* <Component {...pageProps} /> */}
-        {loading ? <Spinner /> : <Component {...pageProps} />}
+        <Component {...pageProps} />
+        {/* {loading ? <Spinner /> : <Component {...pageProps} />} */}
       </Layout>
     </>
   )
