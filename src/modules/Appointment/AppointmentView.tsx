@@ -10,7 +10,7 @@ const ConfirmarDatos = () => {
   return <div>CONFIRMAR DATOS</div>
 }
 
-const contentTabs = {
+const contentTabs: { [key: number]: any } = {
   1: () => <DataView />,
   2: () => <DateView />,
   3: () => ConfirmarDatos()
