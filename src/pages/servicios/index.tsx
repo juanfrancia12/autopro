@@ -5,7 +5,6 @@ import Head from 'next/head'
 const ServicePage = () => {
   return (
     <>
-      {' '}
       <Head>
         <title>AUTOPRO - SERVICIOS</title>
       </Head>
