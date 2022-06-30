@@ -19,7 +19,7 @@ const DataView = (props: Props) => {
             value=""
             id="flexCheckDefault"
             checked={isCheckboxForm}
-            onClick={() => setIsCheckboxForm(!isCheckboxForm)}
+            onChange={() => setIsCheckboxForm(!isCheckboxForm)}
           />
           <label
             className="form-check-label inline-block text-primary-800"
@@ -35,7 +35,7 @@ const DataView = (props: Props) => {
                 className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-primary-80 bg-gray-200 bg-clip-padding bg-no-repeat border border-solid border-gray-200 rounded transition ease-in-out m-0 focus:text-primary-800 focus:bg-white focus:border-primary-500 focus:outline-none"
                 aria-label="Select service"
               >
-                <option selected disabled>
+                <option value="default" selected disabled>
                   Seleccione un taller
                 </option>
                 <option value="1">Mala - Cañete</option>
@@ -60,7 +60,7 @@ const DataView = (props: Props) => {
               className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-primary-80 bg-gray-200 bg-clip-padding bg-no-repeat border border-solid border-gray-200 rounded transition ease-in-out m-0 focus:text-primary-800 focus:bg-white focus:border-primary-500 focus:outline-none"
               aria-label="Select service"
             >
-              <option selected disabled>
+              <option value="default" selected disabled>
                 Seleccione un servicio
               </option>
               <option value="1">Cambio de aceite</option>

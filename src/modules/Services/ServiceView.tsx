@@ -43,7 +43,7 @@ const ServiceView = () => {
   return (
     <>
       {/* BANNER */}
-      <section className="w-full min-h-[27rem] pt-28 pb-16 bg-gradient-to-tr from-primary-600 to-primary-800 grid place-items-center responsive-screen-width">
+      <section className="w-full h-80 md:min-h-[27rem] pt-28 pb-10 md:pb-16 bg-gradient-to-tr from-primary-600 to-primary-800 grid place-items-center responsive-screen-width">
         <div className="grid gap-6">
           <h1 className="text-gray-100 text-center text-xl md:text-3xl md:text-start lg:text-4xl font-bold">
             NUESTROS SERVICIOS
@@ -90,7 +90,9 @@ const ServiceView = () => {
                 className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-primary-80 bg-gray-200 bg-clip-padding bg-no-repeat border border-solid border-gray-200 rounded transition ease-in-out m-0 focus:text-primary-800 focus:bg-white focus:border-primary-500 focus:outline-none"
                 aria-label="Select service"
               >
-                <option selected>Todos</option>
+                <option value="default" selected>
+                  Todos
+                </option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>

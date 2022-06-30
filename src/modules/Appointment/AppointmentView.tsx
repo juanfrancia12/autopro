@@ -1,10 +1,7 @@
 import DataView from '@modules/Appointment/components/data/DataView'
 import DateView from '@modules/Appointment/components/date/DateView'
+import ReserveView from '@modules/Appointment/components/reserve/ReserveView'
 import { useState } from 'react'
-
-const FechaHora = () => {
-  return <div>FECHA Y HORA</div>
-}
 
 const ConfirmarDatos = () => {
   return <div>CONFIRMAR DATOS</div>
@@ -13,7 +10,7 @@ const ConfirmarDatos = () => {
 const contentTabs: { [key: number]: any } = {
   1: () => <DataView />,
   2: () => <DateView />,
-  3: () => ConfirmarDatos()
+  3: () => <ReserveView />
 }
 
 const AppointmentView = () => {
@@ -37,10 +34,28 @@ const AppointmentView = () => {
     }
   }
 
+  const previousChange = (e: any) => {
+    e.preventDefault()
+    if (toggleTab + 1 < 1) {
+      return
+    }
+
+    setToggleTab(toggleTab - 1)
+  }
+
+  const nextChange = (e: any) => {
+    e.preventDefault()
+    if (toggleTab + 1 > 3) {
+      return
+    }
+
+    setToggleTab(toggleTab + 1)
+  }
+
   return (
     <>
       {/* BANNER */}
-      <section className="w-full min-h-[27rem] pt-28 pb-16 bg-gradient-to-tr from-primary-600 to-primary-800 grid place-items-center responsive-screen-width">
+      <section className="w-full h-80 md:min-h-[27rem] pt-28 pb-10 md:pb-16 bg-gradient-to-tr from-primary-600 to-primary-800 grid place-items-center responsive-screen-width">
         <div className="grid gap-6">
           <h1 className="text-gray-100 text-center text-xl md:text-3xl md:text-start lg:text-4xl font-bold">
             RESERVAR CITA
@@ -92,13 +107,27 @@ const AppointmentView = () => {
           </div>
         </section>
         <section className="bg-white">{contentTabs[toggleTab]()}</section>
-        <button
-          type="button"
-          className={`w-max m-auto text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-8 py-2 text-center
+        <div className="flex justify-center gap-5">
+          {toggleTab !== 1 && (
+            <button
+              type="button"
+              className={`w-32 text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-8 py-2 text-center
             `}
-        >
-          Siguiente
-        </button>
+              onClick={e => previousChange(e)}
+            >
+              Atrás
+            </button>
+          )}
+
+          <button
+            type="button"
+            className={`w-32 text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-8 py-2 text-center
+            `}
+            onClick={e => nextChange(e)}
+          >
+            {toggleTab < 3 ? 'Siguiente' : 'Confirmar'}
+          </button>
+        </div>
       </section>
     </>
   )

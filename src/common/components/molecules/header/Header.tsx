@@ -110,14 +110,28 @@ type Props = {}
 const Header = (props: Props) => {
   const [open, setOpen] = useState(false)
   const [colorChange, setColorChange] = useState(false)
+  const [isScrollBody, setIsScrollBody] = useState(false)
 
   const changeNavbarColor = () => {
-    if (window.scrollY >= 80) {
-      // 80
-      setColorChange(true)
+    let lastScrollTop = 0
+
+    let st = window.pageYOffset || document.documentElement.scrollTop
+
+    if (st > lastScrollTop) {
+      // downscroll code
+      setIsScrollBody(true)
     } else {
-      setColorChange(false)
+      // upscroll code
+      setIsScrollBody(false)
     }
+    lastScrollTop = st <= 0 ? 0 : st
+
+    // if (window.scrollY >= 80) {
+    //   // 80
+    //   setColorChange(true)
+    // } else {
+    //   setColorChange(false)
+    // }
   }
 
   const scrollToTop = () => {
@@ -134,7 +148,12 @@ const Header = (props: Props) => {
 
   return (
     <>
-      <header className="w-full h-28 responsive-screen-width fixed top-0 left-0 right-0 text-gray-100 grid">
+      <header
+        className={`w-full h-28 responsive-screen-width fixed top-0 left-0 right-0 text-gray-100 grid 
+        `}
+        // ${          isScrollBody ? 'bg-red-400' : 'bg-blue-400'        }
+        id="header-desktop "
+      >
         <div className="flex w-full items-center justify-between">
           <div className="flex items-center gap-0 lg:gap-16">
             <div className="flex items-center" onClick={scrollToTop}>
@@ -157,7 +176,7 @@ const Header = (props: Props) => {
           </div>
 
           <div className="flex items-center gap-4 lg:none">
-            <div className="flex gap-4">
+            <div className="hidden sm:flex gap-4">
               <button
                 type="button"
                 className={`text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-4 py-1.5 md:px-8 md:py-2.5 text-center

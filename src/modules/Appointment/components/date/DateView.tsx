@@ -35,7 +35,7 @@ const TABLE_HEAD = [
 
 const TABLE_BODY = [
   {
-    id: 1,
+    id: 101,
     items: [
       {
         id: 1,
@@ -72,7 +72,7 @@ const TABLE_BODY = [
     ]
   },
   {
-    id: 2,
+    id: 102,
     items: [
       {
         id: 1,
@@ -109,7 +109,7 @@ const TABLE_BODY = [
     ]
   },
   {
-    id: 3,
+    id: 103,
     items: [
       {
         id: 1,
@@ -146,7 +146,7 @@ const TABLE_BODY = [
     ]
   },
   {
-    id: 4,
+    id: 104,
     items: [
       {
         id: 1,
@@ -183,7 +183,7 @@ const TABLE_BODY = [
     ]
   },
   {
-    id: 5,
+    id: 105,
     items: [
       {
         id: 1,
@@ -220,7 +220,7 @@ const TABLE_BODY = [
     ]
   },
   {
-    id: 6,
+    id: 106,
     items: [
       {
         id: 1,
@@ -257,7 +257,7 @@ const TABLE_BODY = [
     ]
   },
   {
-    id: 7,
+    id: 107,
     items: [
       {
         id: 1,
@@ -294,7 +294,7 @@ const TABLE_BODY = [
     ]
   },
   {
-    id: 8,
+    id: 108,
     items: [
       {
         id: 1,
@@ -331,7 +331,7 @@ const TABLE_BODY = [
     ]
   },
   {
-    id: 9,
+    id: 109,
     items: [
       {
         id: 1,
@@ -368,7 +368,7 @@ const TABLE_BODY = [
     ]
   },
   {
-    id: 10,
+    id: 110,
     items: [
       {
         id: 1,
@@ -405,7 +405,7 @@ const TABLE_BODY = [
     ]
   },
   {
-    id: 11,
+    id: 111,
     items: [
       {
         id: 1,
@@ -442,7 +442,7 @@ const TABLE_BODY = [
     ]
   },
   {
-    id: 12,
+    id: 112,
     items: [
       {
         id: 1,
@@ -554,7 +554,7 @@ const DateView = (props: Props) => {
                   className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-primary-80 bg-gray-200 bg-clip-padding bg-no-repeat border border-solid border-gray-200 rounded transition ease-in-out m-0 focus:text-primary-800 focus:bg-white focus:border-primary-500 focus:outline-none"
                   aria-label="Select service"
                 >
-                  <option selected disabled>
+                  <option value="default" selected disabled>
                     Seleccionar
                   </option>
                   <option value="1">Lunes</option>
@@ -585,7 +585,7 @@ const DateView = (props: Props) => {
                   className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-primary-80 bg-gray-200 bg-clip-padding bg-no-repeat border border-solid border-gray-200 rounded transition ease-in-out m-0 focus:text-primary-800 focus:bg-white focus:border-primary-500 focus:outline-none"
                   aria-label="Select service"
                 >
-                  <option selected disabled>
+                  <option value="default" selected disabled>
                     Seleccionar
                   </option>
                   <option value="1">07 : 00 AM</option>
