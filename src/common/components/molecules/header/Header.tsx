@@ -231,6 +231,7 @@ const Header = (props: Props) => {
         isModal={hookModal.isModalToggle}
         handleModal={hookModal.handleModalToggle}
         type={isModalLogin ? 'modal-login' : 'modal-register'}
+        setIsModalLogin={setIsModalLogin}
       />
     </>
   )
