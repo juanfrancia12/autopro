@@ -1,3 +1,5 @@
+import ModalTemplate from '@components/templates/ModalTemplate'
+import { useToggleModal } from '@hooks/useToggleModal'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -111,6 +113,9 @@ const Header = (props: Props) => {
   const [open, setOpen] = useState(false)
   const [colorChange, setColorChange] = useState(false)
   const [isScrollBody, setIsScrollBody] = useState(false)
+  const [isModalLogin, setIsModalLogin] = useState(false)
+
+  const hookModal = useToggleModal()
 
   const changeNavbarColor = () => {
     let lastScrollTop = 0
@@ -181,6 +186,10 @@ const Header = (props: Props) => {
                 type="button"
                 className={`text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-4 py-1.5 md:px-8 md:py-2.5 text-center
               `}
+                onClick={() => {
+                  hookModal.handleModalToggle()
+                  setIsModalLogin(true)
+                }}
               >
                 Iniciar sesión
               </button>
@@ -188,6 +197,10 @@ const Header = (props: Props) => {
                 type="button"
                 className={`text-primary-700 bg-gray-100 hover:bg-gray-200 rounded-md px-4 py-1.5 md:px-8 md:py-2.5 text-center
               `}
+                onClick={() => {
+                  hookModal.handleModalToggle()
+                  setIsModalLogin(false)
+                }}
               >
                 Registrarse
               </button>
@@ -214,6 +227,11 @@ const Header = (props: Props) => {
         <div className="flex-grow border-t border-primary-600"></div>
       </header>
       <MobileNav open={open} setOpen={setOpen} />
+      <ModalTemplate
+        isModal={hookModal.isModalToggle}
+        handleModal={hookModal.handleModalToggle}
+        type={isModalLogin ? 'modal-login' : 'modal-register'}
+      />
     </>
   )
 }

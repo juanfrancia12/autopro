@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 const itemsValores = [
   {
     id: 1,
@@ -300,7 +302,38 @@ const itemsNuestroEquipo = [
   }
 ]
 
-const itemsTaller = []
+const itemsTaller = [
+  {
+    id: 1,
+    nombre: 'Mala - Cañete',
+    image: '/imagenes/inicio/nuestra-ubicacion/google-mapa.jpg',
+    link: '/nosotros/taller/mala-cañete'
+  },
+  {
+    id: 2,
+    nombre: 'Cerro Azul - Cañete',
+    image: '/imagenes/inicio/nuestra-ubicacion/google-mapa.jpg',
+    link: '/nosotros/taller/carroazul-cañete'
+  },
+  {
+    id: 3,
+    nombre: 'Quilmana - Cañete',
+    image: '/imagenes/inicio/nuestra-ubicacion/google-mapa.jpg',
+    link: '/nosotros/taller/quilmana-cañete'
+  },
+  {
+    id: 4,
+    nombre: 'Asia - Cañete',
+    image: '/imagenes/inicio/nuestra-ubicacion/google-mapa.jpg',
+    link: '/nosotros/taller/asia-cañete'
+  },
+  {
+    id: 5,
+    nombre: 'Imperial - Cañete',
+    image: '/imagenes/inicio/nuestra-ubicacion/google-mapa.jpg',
+    link: '/nosotros/taller/imperial-cañete'
+  }
+]
 
 type Props = {}
 
@@ -374,7 +407,21 @@ const AboutView = (props: Props) => {
           <p className="text-center">Puedes elegir entre todas nuestras sucursales</p>
         </div>
 
-        <section className="w-full h-52 bg-blue-300">Slider 2</section>
+        <section className="w-full grid grid-cols-5 gap-5">
+          {itemsTaller.map(item => {
+            const { id, nombre, image, link } = item
+            return (
+              <Link key={id} href={link}>
+                <a className="bg-blue-300 h-40 rounded-xl overflow-hidden relative">
+                  <img src={image} alt={nombre} className="w-full h-full" />
+                  <p className="absolute top-0 left-0 w-full h-full bg-primary-700/60 text-gray-100 grid place-items-center">
+                    {nombre}
+                  </p>
+                </a>
+              </Link>
+            )
+          })}
+        </section>
       </section>
       {/* NUESTRO EQUIPO */}
       <section className="grid responsive-screen-gap responsive-screen-width responsive-screen-height">
