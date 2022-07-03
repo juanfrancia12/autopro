@@ -1,5 +1,7 @@
 import Image from 'next/image'
 
+const itemsRecibirAutoPro = []
+
 const NameComponentOrDirectory = () => {
   return (
     <>
@@ -35,7 +37,7 @@ const NameComponentOrDirectory = () => {
           <img
             alt="Snowy mountain lake"
             className="h-full m-auto w-8/12 md:w-5/12" // object-cover
-            src={'/images/home/banner-home.png'}
+            src={'/imagenes/inicio/banner/banner.png'}
           />
         </div>
       </section>
@@ -50,7 +52,7 @@ const NameComponentOrDirectory = () => {
                   alt="gallery"
                   // className="block object-cover object-center w-full h-full rounded-lg border border-gray-300"
                   className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                  src="/images/home/recibir-1.jpg"
+                  src="/imagenes/inicio/recibir-autopro/mecanicos-especialistas.jpg"
                 />
                 <p className="absolute bottom-0 left-0 w-full bg-primary-700/80 h-16 grid place-items-center text-center text-gray-100 font-bold px-2">
                   MECÁNICOS ESPECIALISTAS
@@ -62,7 +64,7 @@ const NameComponentOrDirectory = () => {
                     alt="gallery"
                     // className="block object-cover object-center w-full h-full rounded-lg border border-gray-300"
                     className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                    src="/images/home/recibir-2.jpg"
+                    src="/imagenes/inicio/recibir-autopro/asesoria-mecanica.jpg"
                   />
                   <p className="absolute bottom-0 left-0 w-full bg-primary-700/80 h-16 grid place-items-center text-center text-gray-100 font-bold px-2">
                     ASESORÍA MECÁNICA
@@ -73,7 +75,7 @@ const NameComponentOrDirectory = () => {
                     alt="gallery"
                     // className="block object-cover object-center w-full h-full rounded-lg border border-gray-300"
                     className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                    src="/images/home/recibir-3.jpg"
+                    src="/imagenes/inicio/recibir-autopro/taller-casa-oficina.jpg"
                   />
                   <p className="absolute bottom-0 left-0 w-full bg-primary-700/80 h-16 grid place-items-center text-center text-gray-100 font-bold px-2">
                     TALLER EN CASA O EN OFICINA
@@ -84,7 +86,7 @@ const NameComponentOrDirectory = () => {
                     alt="gallery"
                     // className="block object-cover object-center w-full h-full rounded-lg border border-gray-300"
                     className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                    src="/images/home/recibir-4.webp"
+                    src="/imagenes/inicio/recibir-autopro/calidad-insuperable.webp"
                   />
                   <p className="absolute bottom-0 left-0 w-full bg-primary-700/80 h-16 grid place-items-center text-center text-gray-100 font-bold px-2">
                     CALIDAD INSUPERABLE
@@ -95,7 +97,7 @@ const NameComponentOrDirectory = () => {
                     alt="gallery"
                     // className="block object-cover object-center w-full h-full rounded-lg border border-gray-300"
                     className="block transition-scale duration-500 hover:scale-[1.1]"
-                    src="/images/home/recibir-5.png"
+                    src="/imagenes/inicio/recibir-autopro/garantia-servicio.png"
                   />
                   <p className="absolute bottom-0 left-0 w-full bg-primary-700/80 h-16 grid place-items-center text-center text-gray-100 font-bold px-2">
                     GARANTÍA DEL SERVICIO
@@ -137,42 +139,42 @@ const NameComponentOrDirectory = () => {
                 <img
                   alt="gallery"
                   className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                  src="/images/home/servicio-1.jpg"
+                  src="/imagenes/inicio/servicio-ofrece/planchado-pintura.jpg"
                 />
               </div>
               <div className="h-[15rem] md:h-[22rem] rounded-2xl border border-gray-300 overflow-hidden">
                 <img
                   alt="gallery"
                   className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                  src="/images/home/servicio-2.jpg"
+                  src="/imagenes/inicio/servicio-ofrece/cambio-aceite.jpg"
                 />
               </div>
               <div className="h-[15rem] md:h-[22rem] rounded-2xl border border-gray-300 overflow-hidden">
                 <img
                   alt="gallery"
                   className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                  src="/images/home/servicio-3.jpg"
+                  src="/imagenes/inicio/servicio-ofrece/revision-vehicular.jpg"
                 />
               </div>
               <div className="h-[15rem] md:h-[22rem] rounded-2xl border border-gray-300 overflow-hidden">
                 <img
                   alt="gallery"
                   className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                  src="/images/home/servicio-4.webp"
+                  src="/imagenes/inicio/servicio-ofrece/cambio-motor.webp"
                 />
               </div>
               <div className="h-[15rem] md:h-[22rem] rounded-2xl border border-gray-300 overflow-hidden">
                 <img
                   alt="gallery"
                   className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                  src="/images/home/servicio-5.jpg"
+                  src="/imagenes/inicio/servicio-ofrece/lavado-vehicular.jpg"
                 />
               </div>
               <div className="h-[15rem] md:h-[22rem] rounded-2xl border border-gray-300 overflow-hidden">
                 <img
                   alt="gallery"
                   className="block object-cover object-center w-full h-full transition-scale duration-500 hover:scale-[1.1]"
-                  src="/images/home/servicio-6.jpg"
+                  src="/imagenes/inicio/servicio-ofrece/repuestos-accesorios.jpg"
                 />
               </div>
             </div>

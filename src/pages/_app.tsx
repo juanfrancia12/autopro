@@ -2,27 +2,13 @@ import '../../styles/styles.scss'
 
 import Footer from '@components/molecules/footer/Footer'
 import Header from '@components/molecules/header/Header'
+import HeaderUser from '@components/molecules/header/HeaderUser'
+import SidebarUser from '@components/molecules/sidebar/SidebarUser'
+import { useUser } from '@hooks/useUser'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-
-type LayoutProps = {
-  children: React.ReactNode
-}
-
-const Layout = ({ children }: LayoutProps) => {
-  return (
-    <>
-      <Head>
-        <title>AUTOPRO</title>
-      </Head>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </>
-  )
-}
 
 const Spinner = () => {
   return (
@@ -47,8 +33,53 @@ const Spinner = () => {
   )
 }
 
+type LayoutProps = {
+  children: React.ReactNode
+}
+
+const Layout = (props: LayoutProps) => {
+  const { isUserLogin } = useUser()
+  return (
+    <>
+      <Head>
+        <title>AUTOPRO</title>
+      </Head>
+      {!isUserLogin ? (
+        <>
+          <Header />
+          <main>{props.children}</main>
+          <Footer />
+        </>
+      ) : (
+        <>
+          <section className="grid grid-cols-10">
+            <SidebarUser className="h-screen bg-primary-800 text-gray-100 col-span-2 sticky top-0" />
+            <section className="bg-gray-200 col-span-8">
+              <HeaderUser />
+              <main className="p-8">{props.children}</main>
+            </section>
+          </section>
+        </>
+      )}
+    </>
+  )
+}
+
 function MyApp({ Component, pageProps }: AppProps) {
   const [loading, SetLoading] = useState(false)
+  const [idUserSession, setIdUserSession] = useState<any>()
+  const [loadingPage, setLoadingPage] = useState(true)
+  // () => window.sessionStorage.getItem('userLoginSession')
+
+  const router = useRouter()
+  const { isUserLogin } = useUser()
+
+  useEffect(() => {
+    if (isUserLogin) {
+      router.push(`/${isUserLogin}`)
+    }
+    setLoadingPage(false)
+  }, [isUserLogin])
 
   useEffect(() => {
     Router.events.on('routeChangeStart', () => {
@@ -63,6 +94,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       SetLoading(false)
     })
   }, [])
+
+  if (loadingPage) {
+    return <Spinner />
+  }
+
   return (
     <>
       <Layout>

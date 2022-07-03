@@ -61,7 +61,14 @@ const ModalTemplate = (props: any) => {
               Crear cuenta
             </button>
           </div>
-          {props.type === 'modal-login' ? <ModalLogin /> : <ModalRegister />}
+          {props.type === 'modal-login' ? (
+            <ModalLogin
+              closeModal={props.handleModal}
+              // handleModal={props.handleModal}
+            />
+          ) : (
+            <ModalRegister />
+          )}
         </div>
       </section>
     </>
