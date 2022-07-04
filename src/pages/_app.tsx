@@ -54,7 +54,7 @@ const Layout = (props: LayoutProps) => {
         <>
           <section className="grid grid-cols-10">
             <SidebarUser className="h-screen bg-primary-800 text-gray-100 col-span-2 sticky top-0" />
-            <section className="bg-gray-200 col-span-8">
+            <section className="bg-gray-100 col-span-8">
               <HeaderUser />
               <main className="p-8">{props.children}</main>
             </section>

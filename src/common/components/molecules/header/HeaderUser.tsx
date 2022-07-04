@@ -33,7 +33,7 @@ const optionHeaderUser = [
         <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
       </svg>
     ),
-    url: '/citas'
+    url: '/#citas'
   },
   {
     id: 3,
@@ -48,7 +48,7 @@ const optionHeaderUser = [
         <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
       </svg>
     ),
-    url: '/compras'
+    url: '#compras'
   },
   {
     id: 4,
@@ -80,7 +80,7 @@ const HeaderUser = (props: Props) => {
   const { isUserLogin, onChangleLogout } = useUser()
 
   return (
-    <header className="sticky top-0 bg-white h-20 flex items-center justify-between p-8">
+    <header className="sticky top-0 bg-white h-20 flex items-center justify-between p-8 border-b border-gray-300">
       <button>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -191,84 +191,6 @@ const HeaderUser = (props: Props) => {
               </button>
             )
           })}
-          {/* <Link href={`/@juan/edit`}>
-            <a
-              className={`w-full py-4 pl-8 flex gap-4 items-center ${
-                router.query.username === `/@juan/edit`
-                  ? 'bg-blue-800'
-                  : 'text-gray-500 hover:bg-blue-800 hover:text-gray-100'
-              }`}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                className="w-5"
-                viewBox="0 0 16 16"
-              >
-                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-              </svg>
-              <span>Perfil</span>
-            </a>
-          </Link>
-          <Link href={`/@juan/edit`}>
-            <a
-              className={`w-full py-4 pl-8 flex gap-4 items-center ${
-                router.query.username === `/@juan/edit`
-                  ? 'bg-blue-800'
-                  : 'text-gray-500 hover:bg-blue-800 hover:text-gray-100'
-              }`}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                className="w-5"
-                viewBox="0 0 16 16"
-              >
-                <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z" />
-                <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-              </svg>
-              <span>Historial citas</span>
-            </a>
-          </Link>
-          <Link href={`/@juan/edit`}>
-            <a
-              className={`w-full py-4 pl-8 flex gap-4 items-center ${
-                router.query.username === `/@juan/edit`
-                  ? 'bg-blue-800'
-                  : 'text-gray-500 hover:bg-blue-800 hover:text-gray-100'
-              }`}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                className="w-5"
-                viewBox="0 0 16 16"
-              >
-                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
-              </svg>
-              <span>Historial compras</span>
-            </a>
-          </Link>
-          <Link href={`/@juan/edit`}>
-            <a
-              className={`w-full py-4 pl-8 flex gap-4 items-center border-t border-gray-500/20 ${
-                router.query.username === `/@juan/edit`
-                  ? 'bg-blue-800'
-                  : 'text-gray-500 hover:bg-blue-800 hover:text-gray-100'
-              }`}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                className="w-5"
-                viewBox="0 0 16 16"
-              >
-                <path d="M7.5 1v7h1V1h-1z" />
-                <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z" />
-              </svg>
-              <span>Cerrar sesión</span>
-            </a>
-          </Link> */}
         </div>
       )}
     </header>
