@@ -5,7 +5,7 @@ const ProductPage = () => {
   return (
     <>
       <Head>
-        <title>AUTOPRO - PRODUCTOS</title>
+        <title>AUTOPRO - PAGINA PRODUCTOS</title>
       </Head>
 
       <ProductView />
