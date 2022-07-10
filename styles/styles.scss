@@ -6,7 +6,8 @@
   html {
     @apply scroll-smooth;
     @apply box-border;
-    @apply text-primary-700;
+    @apply text-gray-100;
+    @apply bg-primary-700;
     // @apply bg-gray-100;
     // @apply max-w-screen-2xl;
   }

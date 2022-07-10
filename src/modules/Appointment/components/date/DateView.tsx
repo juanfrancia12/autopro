@@ -480,7 +480,10 @@ const TABLE_BODY = [
   }
 ]
 
-type Props = {}
+type Props = {
+  setFormAppointment: any
+  handleChange: any
+}
 
 const DateView = (props: Props) => {
   return (

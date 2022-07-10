@@ -1,6 +1,9 @@
 import { useState } from 'react'
 
-type Props = {}
+type Props = {
+  setFormAppointment: any
+  handleChange: any
+}
 
 const DataView = (props: Props) => {
   const [isCheckboxForm, setIsCheckboxForm] = useState(false)

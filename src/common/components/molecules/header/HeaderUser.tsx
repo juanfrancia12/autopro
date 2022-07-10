@@ -163,7 +163,6 @@ const HeaderUser = (props: Props) => {
           {optionHeaderUser.map(item => {
             const { id, name, icon, url, onClick } = item
             return !onClick ? (
-              // <Link key={id} href={`${router.asPath}${url}`}>
               <Link key={id} href={`/${isUserLogin}${url}`}>
                 <a
                   className={`w-full py-4 pl-8 flex gap-4 items-center last:border-t border-gray-500/20 ${

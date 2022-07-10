@@ -1,20 +1,43 @@
+import Banner from '@components/templates/banner'
+import Section from '@components/templates/section'
 import DataView from '@modules/Appointment/components/data/DataView'
 import DateView from '@modules/Appointment/components/date/DateView'
 import ReserveView from '@modules/Appointment/components/reserve/ReserveView'
 import { useState } from 'react'
 
-const ConfirmarDatos = () => {
-  return <div>CONFIRMAR DATOS</div>
-}
+import { useAppointments } from './../../mock2/context/appointment.context'
 
 const contentTabs: { [key: number]: any } = {
-  1: () => <DataView />,
-  2: () => <DateView />,
+  1: (props: any) => (
+    <DataView
+      setFormAppointment={props.setFormCreateAppointment}
+      handleChange={props.handleChange}
+    />
+  ),
+  2: (props: any) => (
+    <DateView
+      setFormAppointment={props.setFormCreateAppointment}
+      handleChange={props.handleChange}
+    />
+  ),
   3: () => <ReserveView />
+}
+
+const inititalState = {
+  workshop: '',
+  service: '',
+  typeVehicle: '',
+  pickUpHome: '',
+  description: '',
+  date: '',
+  hour: ''
 }
 
 const AppointmentView = () => {
   const [toggleTab, setToggleTab] = useState(1)
+  const [formCreateAppointment, setFormCreateAppointment] = useState(inititalState)
+
+  const { appointments, createAppointment }: any = useAppointments()
 
   const arrayTabs = {
     datos: {
@@ -52,19 +75,39 @@ const AppointmentView = () => {
     setToggleTab(toggleTab + 1)
   }
 
+  const handleChange = (e: any) =>
+    setFormCreateAppointment({ ...formCreateAppointment, [e.target.name]: e.target.value })
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+
+    if (formCreateAppointment.service) {
+      createAppointment(
+        formCreateAppointment.workshop,
+        formCreateAppointment.service,
+        formCreateAppointment.typeVehicle,
+        formCreateAppointment.pickUpHome,
+        formCreateAppointment.description,
+        formCreateAppointment.date,
+        formCreateAppointment.hour
+      )
+    }
+
+    console.log(formCreateAppointment)
+  }
+
   return (
     <>
       {/* BANNER */}
-      <section className="w-full h-80 md:min-h-[27rem] pt-28 pb-10 md:pb-16 bg-gradient-to-tr from-primary-600 to-primary-800 grid place-items-center responsive-screen-width">
-        <div className="grid gap-6">
-          <h1 className="text-gray-100 text-center text-xl md:text-3xl md:text-start lg:text-4xl font-bold">
-            RESERVAR CITA
-          </h1>
-          <div className="w-3/6 m-auto flex-grow border-t-2 border-gray-100"></div>
-        </div>
-      </section>
+      <Banner
+        isHome={false}
+        className={
+          'w-full h-80 md:min-h-[27rem] pt-28 pb-10 md:pb-16 bg-gradient-to-tr from-primary-600 to-primary-800 grid place-items-center responsive-screen-width'
+        }
+        title="RESERVAR CITA"
+      />
       {/* TABS - FORMULARIO */}
-      <section className="grid responsive-screen-gap responsive-screen-width responsive-screen-height">
+      <section className="bg-white text-primary-700 grid responsive-screen-gap responsive-screen-width responsive-screen-height">
         <h2 className="text-xl font-bold text-center">PASOS PARA RESERVAR UNA CITA</h2>
         <section className="w-full flex gap-4">
           <div
@@ -106,7 +149,17 @@ const AppointmentView = () => {
             {arrayTabs['confirmar'].title}
           </div>
         </section>
-        <section className="bg-white">{contentTabs[toggleTab]()}</section>
+        <section className="bg-white">
+          {/* {toggleTab === 1 ? (
+            <DataView setFormAppointment={setFormCreateAppointment} />
+          ) : toggleTab === 2 ? (
+            <DateView setFormAppointment={setFormCreateAppointment} />
+          ) : (
+            <ReserveView />
+          )} */}
+
+          {contentTabs[toggleTab](setFormCreateAppointment, handleChange)}
+        </section>
         <div className="flex justify-center gap-5">
           {toggleTab !== 1 && (
             <button
@@ -119,14 +172,25 @@ const AppointmentView = () => {
             </button>
           )}
 
-          <button
-            type="button"
-            className={`w-32 text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-8 py-2 text-center
+          {toggleTab < 3 ? (
+            <button
+              type="button"
+              className={`w-32 text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-8 py-2 text-center
+           `}
+              onClick={e => nextChange(e)}
+            >
+              Siguiente
+            </button>
+          ) : (
+            <button
+              type="button"
+              className={`w-32 text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-8 py-2 text-center
             `}
-            onClick={e => nextChange(e)}
-          >
-            {toggleTab < 3 ? 'Siguiente' : 'Confirmar'}
-          </button>
+              onClick={handleSubmit}
+            >
+              Confirmar
+            </button>
+          )}
         </div>
       </section>
     </>

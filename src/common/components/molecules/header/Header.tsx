@@ -1,4 +1,5 @@
 import ModalTemplate from '@components/templates/ModalTemplate'
+import { scrollToTop } from '@helpers/scroll-top.helper'
 import { useToggleModal } from '@hooks/useToggleModal'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -117,47 +118,73 @@ const Header = (props: Props) => {
 
   const hookModal = useToggleModal()
 
-  const changeNavbarColor = () => {
-    let lastScrollTop = 0
+  // const changeNavbarColor = () => {
+  //   let ubication_now = window.pageYOffset
+  //   let distance_now = window.pageYOffset
 
-    let st = window.pageYOffset || document.documentElement.scrollTop
+  //   if (ubication_now >= distance_now) {
+  //     console.log('subida', window.pageYOffset)
 
-    if (st > lastScrollTop) {
-      // downscroll code
-      setIsScrollBody(true)
-    } else {
-      // upscroll code
-      setIsScrollBody(false)
-    }
-    lastScrollTop = st <= 0 ? 0 : st
+  //     setIsScrollBody(false)
+  //   } else {
+  //     console.log('bajada', window.pageYOffset)
+  //     setIsScrollBody(true)
+  //   }
 
-    // if (window.scrollY >= 80) {
-    //   // 80
-    //   setColorChange(true)
-    // } else {
-    //   setColorChange(false)
-    // }
-  }
+  //   ubication_now = distance_now
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
-  }
+  //   // let lastScrollTop = 0
+
+  //   // let st = window.pageYOffset || document.documentElement.scrollTop
+
+  //   // if (st > lastScrollTop) {
+  //   //   // downscroll code
+  //   //   setIsScrollBody(true)
+  //   // } else {
+  //   //   // upscroll code
+  //   //   setIsScrollBody(false)
+  //   // }
+  //   // lastScrollTop = st <= 0 ? 0 : st
+
+  //   // // if (window.scrollY >= 80) {
+  //   // //   // 80
+  //   // //   setColorChange(true)
+  //   // // } else {
+  //   // //   setColorChange(false)
+  //   // // }
+  // }
 
   useEffect(() => {
+    let ubication_now = window.pageYOffset
+
+    const changeNavbarColor = () => {
+      let distance_now = window.pageYOffset
+
+      if (ubication_now >= distance_now) {
+        console.log('subida', window.pageYOffset)
+
+        setIsScrollBody(false)
+      } else {
+        console.log('bajada', window.pageYOffset)
+        setIsScrollBody(true)
+      }
+
+      ubication_now = distance_now
+    }
+
     window.addEventListener('scroll', changeNavbarColor)
-    return () => window.removeEventListener('scroll', changeNavbarColor)
+    // return () => window.removeEventListener('scroll', changeNavbarColor)
   })
 
   return (
     <>
       <header
-        className={`w-full h-28 responsive-screen-width fixed top-0 left-0 right-0 text-gray-100 grid 
+        className={`w-full h-28 responsive-screen-width fixed top-0 left-0 right-0 text-gray-100 grid ${
+          isScrollBody ? '-top-40' : 'top-0'
+        } 
         `}
-        // ${          isScrollBody ? 'bg-red-400' : 'bg-blue-400'        }
-        id="header-desktop "
+        //
+        id="header-desktop"
       >
         <div className="flex w-full items-center justify-between">
           <div className="flex items-center gap-0 lg:gap-16">
