@@ -1,4 +1,5 @@
 import { useUser } from '@hooks/useUser'
+import Link from 'next/link'
 import React from 'react'
 
 type Props = {
@@ -11,9 +12,9 @@ const index = (props: Props) => {
 
   return (
     <section
-      className={`bg-white text-primary-700 grid responsive-screen-gap ${
-        !isUserLogin && 'responsive-screen-width'
-      } responsive-screen-height`}
+      className={`text-primary-700 grid responsive-screen-gap ${
+        !isUserLogin ? 'responsive-screen-width p-0 bg-white responsive-screen-height' : 'responsive-screen-height-user'
+      } `}
     >
       <h2 className="text-xl font-bold text-center">{props.title}</h2>
       <div className="w-full grid gap-8">
@@ -73,26 +74,29 @@ const index = (props: Props) => {
                 return (
                   <div
                     key={id}
-                    className="h-auto relative md:h-[27rem] rounded-2xl border border-gray-300 overflow-hidden"
+                    className="bg-white h-auto relative md:h-[27rem] rounded-2xl border border-gray-300 overflow-hidden"
                   >
                     <img
                       alt={name || nameImage}
-                      className="block object-cover object-center w-full h-52 transition-scale duration-500 hover:scale-[1.1]"
+                      className={`${
+                        !price && 'block object-cover object-center w-full'
+                      } m-auto h-52`}
                       src={image || urlImage}
                     />
                     <div className="grid gap-6 py-6 px-6">
                       <h3 className="font-bold truncate">{name || nameImage}</h3>
                       <p>{description}</p>
-                      <button
-                        type="button"
-                        className={`w-full m-auto text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-4 py-2 text-center
+                      <Link href="/cita">
+                        <a
+                          className={`w-full m-auto text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-4 py-2 text-center
       `}
-                      >
-                        {`${price ? 'Agregar al carrito' : 'Solicitar servicio'}`}
-                      </button>
+                        >
+                          {`${price ? 'Agregar al carrito' : 'Solicitar servicio'}`}
+                        </a>
+                      </Link>
                     </div>
                     {price && (
-                      <div className="absolute top-4 right-0 bg-yellow-300 px-4 py-2 font-semibold rounded-l-md">{`S/. ${price.toFixed(
+                      <div className="absolute top-6 -right-2 bg-yellow-300 px-4 py-2 font-semibold rounded-l-md">{`S/. ${price.toFixed(
                         2
                       )}`}</div>
                     )}

@@ -1,3 +1,4 @@
+import { useUsers } from 'mock2/context/user.context'
 import { useRouter } from 'next/router'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
@@ -28,19 +29,21 @@ type Props = {}
 const ModalLogin = (props: any) => {
   const { register, handleSubmit } = useForm<IFormInput>()
   const router = useRouter()
+  const { users }: any = useUsers()
 
   const onSubmit: SubmitHandler<IFormInput> = data => {
     const { email, password } = data
 
-    const userData = userLogin.find(user => user.email === email && user.password === password)
+    const userData = users.find((user: any) => user.email === email && user.password === password)
 
     if (userData) {
       window.sessionStorage.setItem('isUserLogin', userData.uri)
       props.closeModal()
-      router.push(`/${userData.uri}`)
+      router.push(`/`)
+      return
     }
 
-    // alert('Los datos ingresados son incorrectos, verifique y vuelva a intentarlo')
+    alert('Los datos ingresados son incorrectos, verifique y vuelva a intentarlo')
   }
 
   return (

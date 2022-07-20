@@ -13,7 +13,8 @@ const ServiceFormPage = () => {
   const { services, createService, updateService }: any = useServices()
   const router = useRouter()
 
-  const handleChange = (e: any) => setService({ ...service, [e.target.name]: e.target.value })
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
+    setService({ ...service, [e.target.name]: e.target.value })
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
@@ -24,6 +25,7 @@ const ServiceFormPage = () => {
       updateService(router.query.id, service)
     }
 
+    setService(inititalState)
     console.log(service)
 
     // router.push("/");

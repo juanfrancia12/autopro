@@ -1,5 +1,6 @@
 import Banner from '@components/templates/banner'
 import Section from '@components/templates/section'
+import { useUser } from '@hooks/useUser'
 import DataView from '@modules/Appointment/components/data/DataView'
 import DateView from '@modules/Appointment/components/date/DateView'
 import ReserveView from '@modules/Appointment/components/reserve/ReserveView'
@@ -36,6 +37,8 @@ const inititalState = {
 const AppointmentView = () => {
   const [toggleTab, setToggleTab] = useState(1)
   const [formCreateAppointment, setFormCreateAppointment] = useState(inititalState)
+
+  const { isUserLogin } = useUser()
 
   const { appointments, createAppointment }: any = useAppointments()
 
@@ -107,7 +110,11 @@ const AppointmentView = () => {
         title="RESERVAR CITA"
       />
       {/* TABS - FORMULARIO */}
-      <section className="bg-white text-primary-700 grid responsive-screen-gap responsive-screen-width responsive-screen-height">
+      <section
+        className={`text-primary-700 grid responsive-screen-gap ${
+          !isUserLogin && 'bg-white responsive-screen-width responsive-screen-height'
+        }`}
+      >
         <h2 className="text-xl font-bold text-center">PASOS PARA RESERVAR UNA CITA</h2>
         <section className="w-full flex gap-4">
           <div
@@ -149,7 +156,7 @@ const AppointmentView = () => {
             {arrayTabs['confirmar'].title}
           </div>
         </section>
-        <section className="bg-white">
+        <section className="">
           {/* {toggleTab === 1 ? (
             <DataView setFormAppointment={setFormCreateAppointment} />
           ) : toggleTab === 2 ? (

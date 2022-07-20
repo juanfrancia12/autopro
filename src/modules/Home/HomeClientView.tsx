@@ -82,27 +82,27 @@ const itemsSlidersSuppliers: any = [
     id: 1,
     items: [
       {
-        id: 11110,
+        id: 1,
         nameImage: 'Image',
         urlImage: '/imagenes/inicio/nuestros-proveedores/proveedor-velyen.png'
       },
       {
-        id: 11110,
+        id: 2,
         nameImage: 'Image',
         urlImage: '/imagenes/inicio/nuestros-proveedores/proveedor-launch.jpg'
       },
       {
-        id: 11110,
+        id: 3,
         nameImage: 'Image',
         urlImage: '/imagenes/inicio/nuestros-proveedores/proveedor-scania.jpg'
       },
       {
-        id: 11110,
+        id: 4,
         nameImage: 'Image',
         urlImage: '/imagenes/inicio/nuestros-proveedores/proveedor-mishubishi.png'
       },
       {
-        id: 11110,
+        id: 5,
         nameImage: 'Image',
         urlImage: '/imagenes/inicio/nuestros-proveedores/proveedor-honda.png'
       }
@@ -121,11 +121,9 @@ const HomeClientView = () => {
     },
     {
       id: 2,
-      items: [...products.slice(3, 8)]
+      items: [...products.slice(0).slice(-5)]
     }
   ]
-
-  console.log(services)
 
   return (
     <>

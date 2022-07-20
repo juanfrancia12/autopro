@@ -1,27 +1,23 @@
+import { useUser } from '@hooks/useUser'
 import Link from 'next/link'
 import React from 'react'
 
-const reduceArray = (arr: []) => {
-  var results = arr.reduce((i, item) => {
-    return item
-  }, [])
-  return results
-}
+// type Props = {
+//   className: string
+//   data: []
+//   title?: string
+//   description?: string
+//   typeGallery?: string
+//   isSkew?: boolean
+//   skew?: number
+//   itemButton?: []
+// }
 
-type Props = {
-  className: string
-  title?: string
-  data?: []
-  description?: string
-  typeGallery?: string
-  isSkew?: boolean
-  skew?: number
-  itemButton?: []
-}
+const index = props => {
+  const { isUserLogin } = useUser()
 
-const index = (props: Props) => {
   return (
-    <section className={props.className}>
+    <section className={`${isUserLogin ? 'hidden' : props.className}`}>
       {props.title && props.typeGallery !== 'gridAbout' && (
         <div className="w-full grid gap-2">
           <h2 className="text-xl font-bold text-center">{props.title}</h2>
@@ -63,23 +59,25 @@ const index = (props: Props) => {
       {props.typeGallery === 'slider' && (
         <>
           <section className="grid gap-8 md:gap-14">
-            {props.data?.map(item => {
+            {props.data.map(function (item) {
               const { id, items } = item
               return (
                 <div
                   key={id}
                   className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5"
                 >
-                  {items?.map((itemSlider: any) => {
-                    const { id, nameImage, urlImage } = itemSlider
+                  {items.map(itemSlider => {
+                    const { id, nameImage, urlImage, name, image } = itemSlider
                     return (
-                      <Link key={id} href={urlImage}>
+                      <Link key={id} href={urlImage || image}>
                         <a className="bg-blue-300 h-40 rounded-xl overflow-hidden relative border border-gray-300">
                           <div className="w-full h-full bg-white"></div>
                           <img
-                            src={urlImage}
-                            alt={nameImage}
-                            className="absolute top-0 left-0 w-full h-full object-contain"
+                            src={urlImage || image}
+                            alt={nameImage || image}
+                            className={`absolute top-0 left-0 w-full h-full ${
+                              name ? 'object-cover' : 'object-contain'
+                            }`}
                           />
                         </a>
                       </Link>
@@ -251,23 +249,3 @@ const index = (props: Props) => {
 }
 
 export default index
-
-/*
-
-<section className="w-full grid grid-cols-5 gap-5">
-          {itemsTaller.map(item => {
-            const { id, nombre, image, link } = item
-            return (
-              <Link key={id} href={link}>
-                <a className="bg-blue-300 h-40 rounded-xl overflow-hidden relative">
-                  <img src={image} alt={nombre} className="w-full h-full" />
-                  <p className="absolute top-0 left-0 w-full h-full bg-primary-700/60 text-gray-100 grid place-items-center">
-                    {nombre}
-                  </p>
-                </a>
-              </Link>
-            )
-          })}
-        </section>
-
-*/
