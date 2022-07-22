@@ -1,28 +1,11 @@
 import Banner from '@components/templates/banner'
-import Section from '@components/templates/section'
 import { useUser } from '@hooks/useUser'
 import DataView from '@modules/Appointment/components/data/DataView'
 import DateView from '@modules/Appointment/components/date/DateView'
 import ReserveView from '@modules/Appointment/components/reserve/ReserveView'
 import { useState } from 'react'
 
-import { useAppointments } from './../../mock2/context/appointment.context'
-
-const contentTabs: { [key: number]: any } = {
-  1: (props: any) => (
-    <DataView
-      setFormAppointment={props.setFormCreateAppointment}
-      handleChange={props.handleChange}
-    />
-  ),
-  2: (props: any) => (
-    <DateView
-      setFormAppointment={props.setFormCreateAppointment}
-      handleChange={props.handleChange}
-    />
-  ),
-  3: () => <ReserveView />
-}
+import { useAppointments } from '../../mock2/context/appointment.context'
 
 const inititalState = {
   workshop: '',
@@ -39,8 +22,7 @@ const AppointmentView = () => {
   const [formCreateAppointment, setFormCreateAppointment] = useState(inititalState)
 
   const { isUserLogin } = useUser()
-
-  const { appointments, createAppointment }: any = useAppointments()
+  const { createAppointment } = useAppointments()
 
   const arrayTabs = {
     datos: {
@@ -60,7 +42,7 @@ const AppointmentView = () => {
     }
   }
 
-  const previousChange = (e: any) => {
+  const previousChange = e => {
     e.preventDefault()
     if (toggleTab + 1 < 1) {
       return
@@ -69,7 +51,7 @@ const AppointmentView = () => {
     setToggleTab(toggleTab - 1)
   }
 
-  const nextChange = (e: any) => {
+  const nextChange = e => {
     e.preventDefault()
     if (toggleTab + 1 > 3) {
       return
@@ -78,25 +60,20 @@ const AppointmentView = () => {
     setToggleTab(toggleTab + 1)
   }
 
-  const handleChange = (e: any) =>
+  const handleChange = e =>
     setFormCreateAppointment({ ...formCreateAppointment, [e.target.name]: e.target.value })
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = e => {
     e.preventDefault()
 
-    if (formCreateAppointment.service) {
-      createAppointment(
-        formCreateAppointment.workshop,
-        formCreateAppointment.service,
-        formCreateAppointment.typeVehicle,
-        formCreateAppointment.pickUpHome,
-        formCreateAppointment.description,
-        formCreateAppointment.date,
-        formCreateAppointment.hour
-      )
+    if (!isUserLogin) {
+      return alert('Debe iniciar sesion')
     }
 
-    console.log(formCreateAppointment)
+    createAppointment(formCreateAppointment)
+
+    setFormCreateAppointment(inititalState)
+    setToggleTab(1)
   }
 
   return (
@@ -157,15 +134,14 @@ const AppointmentView = () => {
           </div>
         </section>
         <section className="">
-          {/* {toggleTab === 1 ? (
-            <DataView setFormAppointment={setFormCreateAppointment} />
+          {/* {contentTabs[toggleTab](handleChange, formCreateAppointment, setDescription)} */}
+          {toggleTab === 1 ? (
+            <DataView handleChange={handleChange} formCreateAppointment={formCreateAppointment} />
           ) : toggleTab === 2 ? (
-            <DateView setFormAppointment={setFormCreateAppointment} />
+            <DateView handleChange={handleChange} formCreateAppointment={formCreateAppointment} />
           ) : (
-            <ReserveView />
-          )} */}
-
-          {contentTabs[toggleTab](setFormCreateAppointment, handleChange)}
+            <ReserveView formCreateAppointment={formCreateAppointment} />
+          )}
         </section>
         <div className="flex justify-center gap-5">
           {toggleTab !== 1 && (

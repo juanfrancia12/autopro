@@ -2,6 +2,7 @@ import Banner from '@components/templates/banner'
 import Section from '@components/templates/section'
 import { useServices } from 'mock2/context/service.context'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { useProducts } from './../../mock2/context/product.context'
 
@@ -62,7 +63,7 @@ const itemsButtonsServicesOffered: any = [
     id: 1,
     name: 'Conoce todos nuestros servicios',
     typeButton: 'primary',
-    url: '/productos'
+    url: '/servicios'
   }
 ]
 
@@ -269,13 +270,14 @@ const HomeClientView = () => {
             Puedes reservar una cita para tu atención y así ahorres tiempo
           </p>
         </div>
-        <button
-          type="button"
-          className={`w-max m-auto text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-8 py-2 text-center
+        <Link href="/cita">
+          <a
+            className={`w-max m-auto text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-8 py-2 text-center
             `}
-        >
-          Reservar cita
-        </button>
+          >
+            Reservar cita
+          </a>
+        </Link>
       </section>
       {/* UBICACION */}
       <section className="bg-primary-200 text-primary-700 grid responsive-screen-gap responsive-screen-width responsive-screen-height">

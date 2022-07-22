@@ -1,3 +1,6 @@
+import { useState } from 'react'
+import DayPickerInput from 'react-day-picker/DayPickerInput'
+
 const TABLE_HEAD = [
   {
     id: 1,
@@ -481,11 +484,18 @@ const TABLE_BODY = [
 ]
 
 type Props = {
-  setFormAppointment: any
+  formCreateAppointment: any
   handleChange: any
 }
 
 const DateView = (props: Props) => {
+  const OperationDate = () => {
+    let hoy = new Date()
+    let dieciseisDias = 1000 * 60 * 60 * 24 * 16
+    let resta = hoy.getTime() - dieciseisDias
+    let fechaDeHaceDieciseisDias = new Date(resta)
+  }
+
   return (
     <section className="grid gap-8 grid-cols-1 lg:grid-cols-3">
       <div className="md:col-span-2 overflow-x-auto">
@@ -555,18 +565,20 @@ const DateView = (props: Props) => {
               <div className="inline-block relative w-full">
                 <select
                   className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-primary-80 bg-gray-200 bg-clip-padding bg-no-repeat border border-solid border-gray-200 rounded transition ease-in-out m-0 focus:text-primary-800 focus:bg-white focus:border-primary-500 focus:outline-none"
-                  aria-label="Select service"
+                  name="date"
+                  value={props.formCreateAppointment.date}
+                  onChange={props.handleChange}
                 >
                   <option value="default" selected disabled>
                     Seleccionar
                   </option>
-                  <option value="1">Lunes</option>
-                  <option value="2">Martes</option>
-                  <option value="3">Miércoles</option>
-                  <option value="4">Jueves</option>
-                  <option value="4">Viernes</option>
-                  <option value="4">Sábado</option>
-                  <option value="4">Domingo</option>
+                  <option value="Lunes">Lunes</option>
+                  <option value="Martes">Martes</option>
+                  <option value="Miércoles">Miércoles</option>
+                  <option value="Jueves">Jueves</option>
+                  <option value="Viernes">Viernes</option>
+                  <option value="Sábado">Sábado</option>
+                  <option value="Domingo">Domingo</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-primary-800">
                   <svg
@@ -586,23 +598,25 @@ const DateView = (props: Props) => {
               <div className="inline-block relative w-full">
                 <select
                   className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-primary-80 bg-gray-200 bg-clip-padding bg-no-repeat border border-solid border-gray-200 rounded transition ease-in-out m-0 focus:text-primary-800 focus:bg-white focus:border-primary-500 focus:outline-none"
-                  aria-label="Select service"
+                  name="hour"
+                  value={props.formCreateAppointment.hour}
+                  onChange={props.handleChange}
                 >
                   <option value="default" selected disabled>
                     Seleccionar
                   </option>
-                  <option value="1">07 : 00 AM</option>
-                  <option value="2">08 : 00 AM</option>
-                  <option value="3">09 : 00 AM</option>
-                  <option value="4">10 : 00 AM</option>
-                  <option value="4">11 : 00 AM</option>
-                  <option value="4">12 : 00 PM</option>
-                  <option value="4">01 : 00 PM</option>
-                  <option value="4">02 : 00 PM</option>
-                  <option value="4">03 : 00 PM</option>
-                  <option value="4">04 : 00 PM</option>
-                  <option value="4">05 : 00 PM</option>
-                  <option value="4">06 : 00 PM</option>
+                  <option value="07 : 00 AM">07 : 00 AM</option>
+                  <option value="08 : 00 AM">08 : 00 AM</option>
+                  <option value="09 : 00 AM">09 : 00 AM</option>
+                  <option value="10 : 00 AM">10 : 00 AM</option>
+                  <option value="11 : 00 AM">11 : 00 AM</option>
+                  <option value="12 : 00 PM">12 : 00 PM</option>
+                  <option value="01 : 00 PM">01 : 00 PM</option>
+                  <option value="02 : 00 PM">02 : 00 PM</option>
+                  <option value="03 : 00 PM">03 : 00 PM</option>
+                  <option value="04 : 00 PM">04 : 00 PM</option>
+                  <option value="05 : 00 PM">05 : 00 PM</option>
+                  <option value="06 : 00 PM">06 : 00 PM</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-primary-800">
                   <svg
@@ -617,6 +631,22 @@ const DateView = (props: Props) => {
             </div>
           </div>
         </div>
+
+        <DayPickerInput
+          onDayChange={day => console.log(day)}
+          dayPickerProps={{
+            showOutsideDays: true,
+            canChangeMonth: false,
+            disabledDays: [
+              new Date(),
+              new Date(),
+              {
+                after: new Date(),
+                before: new Date()
+              }
+            ]
+          }}
+        />
       </div>
     </section>
   )

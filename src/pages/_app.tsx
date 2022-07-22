@@ -1,7 +1,9 @@
 import '../../styles/styles.scss'
+import 'react-day-picker/lib/style.css'
 
 import Spinner from '@components/atoms/spinner'
 import { Layout } from '@components/organisms/layout'
+import { AppointmentProvider } from 'mock2/context/appointment.context'
 import { GraphicsAreaProvider } from 'mock2/context/graphicsArea.context'
 import { GraphicsColumnProvider } from 'mock2/context/graphicsColumn.context'
 import { ProductProvider } from 'mock2/context/product.context'
@@ -30,15 +32,17 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <UserProvider>
-      <ServiceProvider>
-        <ProductProvider>
-          <GraphicsAreaProvider>
-            <GraphicsColumnProvider>
-              <Layout>{loading ? <Spinner /> : <Component {...pageProps} />}</Layout>
-            </GraphicsColumnProvider>
-          </GraphicsAreaProvider>
-        </ProductProvider>
-      </ServiceProvider>
+      <AppointmentProvider>
+        <ServiceProvider>
+          <ProductProvider>
+            <GraphicsAreaProvider>
+              <GraphicsColumnProvider>
+                <Layout>{loading ? <Spinner /> : <Component {...pageProps} />}</Layout>
+              </GraphicsColumnProvider>
+            </GraphicsAreaProvider>
+          </ProductProvider>
+        </ServiceProvider>
+      </AppointmentProvider>
     </UserProvider>
   )
 }

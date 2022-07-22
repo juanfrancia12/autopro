@@ -1,19 +1,26 @@
 import { useUser } from '@hooks/useUser'
 import Link from 'next/link'
-import React from 'react'
+import { useState } from 'react'
 
-type Props = {
-  title: string
-  data: []
+function SortArray(x, y, view) {
+  if (view === 'descendente') {
+    return y.name.localeCompare(x.name)
+  } else if (view === 'ascendente') {
+    return x.name.localeCompare(y.name)
+  }
 }
 
-const index = (props: Props) => {
+const index = props => {
+  const [textFilter, setTextFilter] = useState('')
+  const [valueSelect, setValueSelect] = useState('ascendente')
   const { isUserLogin } = useUser()
 
   return (
     <section
       className={`text-primary-700 grid responsive-screen-gap ${
-        !isUserLogin ? 'responsive-screen-width p-0 bg-white responsive-screen-height' : 'responsive-screen-height-user'
+        !isUserLogin
+          ? 'responsive-screen-width p-0 bg-white responsive-screen-height'
+          : 'responsive-screen-height-user'
       } `}
     >
       <h2 className="text-xl font-bold text-center">{props.title}</h2>
@@ -25,6 +32,7 @@ const index = (props: Props) => {
               id="inline-full-name"
               type="text"
               placeholder="Empieza a buscar..."
+              onChange={e => setTextFilter(e.target.value)}
             />
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg
@@ -47,13 +55,13 @@ const index = (props: Props) => {
             <select
               className="form-select appearance-none block w-full px-3 py-1.5 text-base font-normal text-primary-80 bg-gray-200 bg-clip-padding bg-no-repeat border border-solid border-gray-200 rounded transition ease-in-out m-0 focus:text-primary-800 focus:bg-white focus:border-primary-500 focus:outline-none"
               aria-label="Select service"
+              value={valueSelect}
+              onChange={e => setValueSelect(e.target.value)}
             >
-              <option value="default" selected>
-                Todos
+              <option value="ascendente" selected>
+                Ascendente
               </option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              <option value="descendente">Descendente</option>
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-primary-800">
               <svg
@@ -69,40 +77,43 @@ const index = (props: Props) => {
         <section className="w-full overflow-hidden">
           <div className="container mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {props.data.map((item: any) => {
-                const { id, image, name, description, nameImage, urlImage, price } = item
-                return (
-                  <div
-                    key={id}
-                    className="bg-white h-auto relative md:h-[27rem] rounded-2xl border border-gray-300 overflow-hidden"
-                  >
-                    <img
-                      alt={name || nameImage}
-                      className={`${
-                        !price && 'block object-cover object-center w-full'
-                      } m-auto h-52`}
-                      src={image || urlImage}
-                    />
-                    <div className="grid gap-6 py-6 px-6">
-                      <h3 className="font-bold truncate">{name || nameImage}</h3>
-                      <p>{description}</p>
-                      <Link href="/cita">
-                        <a
-                          className={`w-full m-auto text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-4 py-2 text-center
+              {props.data
+                .filter(item => item.name.toLowerCase().includes(textFilter.toLowerCase()))
+                .sort((x, y) => SortArray(x, y, valueSelect))
+                .map(item => {
+                  const { id, image, name, description, nameImage, urlImage, price } = item
+                  return (
+                    <div
+                      key={id}
+                      className="bg-white h-auto relative md:h-[27rem] rounded-2xl border border-gray-300 overflow-hidden"
+                    >
+                      <img
+                        alt={name || nameImage}
+                        className={`${
+                          !price && 'block object-cover object-center w-full'
+                        } m-auto h-52`}
+                        src={image || urlImage}
+                      />
+                      <div className="grid gap-6 py-6 px-6">
+                        <h3 className="font-bold truncate">{name || nameImage}</h3>
+                        <p>{description}</p>
+                        <Link href="/cita">
+                          <a
+                            className={`w-full m-auto text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-4 py-2 text-center
       `}
-                        >
-                          {`${price ? 'Agregar al carrito' : 'Solicitar servicio'}`}
-                        </a>
-                      </Link>
+                          >
+                            {`${price ? 'Agregar al carrito' : 'Solicitar servicio'}`}
+                          </a>
+                        </Link>
+                      </div>
+                      {price && (
+                        <div className="absolute top-6 -right-2 bg-yellow-300 px-4 py-2 font-semibold rounded-l-md">{`S/. ${price.toFixed(
+                          2
+                        )}`}</div>
+                      )}
                     </div>
-                    {price && (
-                      <div className="absolute top-6 -right-2 bg-yellow-300 px-4 py-2 font-semibold rounded-l-md">{`S/. ${price.toFixed(
-                        2
-                      )}`}</div>
-                    )}
-                  </div>
-                )
-              })}
+                  )
+                })}
             </div>
           </div>
         </section>
@@ -112,21 +123,3 @@ const index = (props: Props) => {
 }
 
 export default index
-
-/* 
-  <div className="grid gap-6 py-6 px-6">
-    <h3 className="font-bold truncate ">{nombre}</h3>
-    <p>{descripcion}</p>
-    <button
-      type="button"
-      className={`w-full m-auto text-gray-100 bg-primary-700 hover:bg-primary-800 rounded-md px-4 py-2 text-center
-`}
-    >
-      Solicitar servicio
-    </button>
-  </div>
-  <div className="absolute top-4 right-0 bg-yellow-300 px-4 py-2 font-semibold rounded-l-md">{`S/. ${precio.toFixed(
-    2
-  )}`}</div>
-</div>
-*/

@@ -1,14 +1,11 @@
 import Banner from '@components/templates/banner'
-import GridList from '@components/templates/gridList'
+import GridList from '@components/templates/gridList/index'
 import Section from '@components/templates/section'
-import { useUser } from '@hooks/useUser'
 
 import { useProducts } from './../../mock2/context/product.context'
 
 const ProductView = () => {
   const { products }: any = useProducts()
-
-  const { isUserLogin } = useUser()
 
   const newArrProduct: any = [
     {

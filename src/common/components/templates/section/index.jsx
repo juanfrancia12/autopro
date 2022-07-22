@@ -2,17 +2,6 @@ import { useUser } from '@hooks/useUser'
 import Link from 'next/link'
 import React from 'react'
 
-// type Props = {
-//   className: string
-//   data: []
-//   title?: string
-//   description?: string
-//   typeGallery?: string
-//   isSkew?: boolean
-//   skew?: number
-//   itemButton?: []
-// }
-
 const index = props => {
   const { isUserLogin } = useUser()
 

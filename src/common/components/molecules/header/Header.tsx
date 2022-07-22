@@ -1,4 +1,3 @@
-import Modal from '@components/templates/modal'
 import ModalTemplate from '@components/templates/ModalTemplate'
 import { scrollToTop } from '@helpers/scroll-top.helper'
 import { useToggleModal } from '@hooks/useToggleModal'
@@ -132,7 +131,7 @@ const Header = (props: Props) => {
     const changeNavbarColor = () => {
       let distance_now = window.pageYOffset
 
-      if (distance_now === 0) {
+      if (distance_now <= 100) {
         setIsInitialTop(false)
       } else {
         setIsInitialTop(true)
@@ -154,12 +153,12 @@ const Header = (props: Props) => {
   return (
     <>
       <header
-        className={`w-full h-28 responsive-screen-width fixed top-0 left-0 right-0 grid ${
+        className={`w-full h-28 responsive-screen-width fixed top-0 left-0 right-0 grid z-10 ${
           isScrollBody
             ? '-top-40'
             : isInitialTop
-            ? 'top-0 bg-white text-primary-700 z-10'
-            : 'top-0 bg-transparent text-gray-100 z-10'
+            ? 'top-0 bg-white text-primary-700'
+            : 'top-0 bg-transparent text-gray-100'
         } 
         `}
         //
@@ -194,7 +193,6 @@ const Header = (props: Props) => {
               `}
                 onClick={() => {
                   hookModal.handleModalToggle()
-                  // setTypeModal('login')
                   setIsModalLogin(true)
                 }}
               >
@@ -206,7 +204,6 @@ const Header = (props: Props) => {
               `}
                 onClick={() => {
                   hookModal.handleModalToggle()
-                  // setTypeModal('register')
                   setIsModalLogin(false)
                 }}
               >
@@ -235,12 +232,6 @@ const Header = (props: Props) => {
         <div className="flex-grow border-t border-primary-600"></div>
       </header>
       <MobileNav open={open} setOpen={setOpen} />
-      {/* <Modal
-        isModalVisible={hookModal.isModalToggle}
-        handleModal={hookModal.handleModalToggle}
-        type={typeModal}
-        setType={setTypeModal}
-      /> */}
       <ModalTemplate
         isModal={hookModal.isModalToggle}
         handleModal={hookModal.handleModalToggle}

@@ -3,6 +3,11 @@ import { createContext, useContext, useState } from 'react'
 
 export const UserContext = createContext({})
 
+const uriRegex = (email: string) => {
+  const regex = /^([^]+)@(\w+).(\w+)$/.exec(email) || ''
+  return '@' + regex[1]
+}
+
 type Props = {
   children: React.ReactNode
 }
@@ -10,10 +15,10 @@ type Props = {
 export const UserProvider = (props: Props) => {
   const [users, setUsers] = useState(UserData)
 
-  const createUser = (name: string, email: string, password: string, uri: string) => {
-    const uriUser = uri
+  const createUser = (name: string, email: string, password: string, access: boolean = false) => {
+    const uriUser = uriRegex(email)
 
-    setUsers([...users, { id: users.length + 1 || 1, name, email, password, uri: uriUser }])
+    setUsers([...users, { id: users.length + 1 || 1, name, email, password, uri: uriUser, access }])
   }
 
   const updateUser = (id: number, updatedUser: object) =>

@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
+import { useAppointments } from '../../../mock2/context/appointment.context'
+
 const itemsAboutPerfil = [
   {
     id: 1,
@@ -276,49 +278,38 @@ const itemsReserveAppointment = [
 ]
 
 const TabHistoryAppointment = () => {
+  const { appointments } = useAppointments()
+
   return (
     <div className="grid grid-cols-12 gap-5">
-      {itemsReserveAppointment.map(item => {
-        const {
-          id,
-          typeReserve,
-          labelWorkshop,
-          valueWorkshop,
-          labelDateTime,
-          valueDateTime,
-          labelTypeVehicle,
-          valueTypeVehicle,
-          labelDelivery,
-          valueDelivery,
-          labelDescription,
-          valueDescription
-        } = item
+      {appointments.map(item => {
+        const { id, workshop, service, typeVehicle, pickUpHome, description, date, hour } = item
         return (
           <div
             key={id}
             className="col-span-6 bg-white border border-gray-300 p-10 flex flex-col gap-8 rounded-lg"
           >
-            <span className="text-center font-bold">{typeReserve}</span>
+            <span className="text-center font-bold">{service}</span>
             <div className="grid gap-3">
               <p>
-                <span className="font-bold">{labelWorkshop}</span>
-                {`: ${valueWorkshop}`}
+                <span className="font-bold">{'Taller'}</span>
+                {`: ${workshop}`}
               </p>
               <p>
-                <span className="font-bold">{labelDateTime}</span>
-                {`: ${valueDateTime}`}
+                <span className="font-bold">{'Fecha y hora'}</span>
+                {`: ${date} - ${hour}`}
               </p>
               <p>
-                <span className="font-bold">{labelTypeVehicle}</span>
-                {`: ${valueTypeVehicle}`}
+                <span className="font-bold">{'Tipo de vehículo'}</span>
+                {`: ${typeVehicle}`}
               </p>
               <p>
-                <span className="font-bold">{labelDelivery}</span>
-                {`: ${valueDelivery}`}
+                <span className="font-bold">{'Recojo a domicilio'}</span>
+                {`: ${pickUpHome}`}
               </p>
               <p className="grid gap-2">
-                <span className="font-bold">{`${labelDescription}:`}</span>
-                <span>{valueDescription}</span>
+                <span className="font-bold">{`Descripción:`}</span>
+                <span>{description}</span>
               </p>
             </div>
           </div>
@@ -539,16 +530,14 @@ const itemsTabs = [
   }
 ]
 
-const contentTabs: { [key: number]: any } = {
+const contentTabs = {
   1: () => <TabPerfil />,
   2: () => <TabHistoryAppointment />,
   3: () => <TabHistoryBuy />,
   4: () => ''
 }
 
-type Props = {}
-
-const Index = (props: Props) => {
+const Index = props => {
   const [numToggleTab, setNumToggleTab] = useState(1)
 
   const router = useRouter()

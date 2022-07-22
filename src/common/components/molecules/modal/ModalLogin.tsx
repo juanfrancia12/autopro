@@ -38,6 +38,7 @@ const ModalLogin = (props: any) => {
 
     if (userData) {
       window.sessionStorage.setItem('isUserLogin', userData.uri)
+      window.sessionStorage.setItem('isUserAccess', userData.access)
       props.closeModal()
       router.push(`/`)
       return
@@ -55,6 +56,7 @@ const ModalLogin = (props: any) => {
             className="w-full appearance-none border-2 border-gray-200 rounded-lg px-4 py-2 text-primary-800 leading-tight placeholder-primary-800 focus:outline-none focus:bg-white focus:border-primary-500"
             id="login-user"
             type="email"
+            defaultValue={'admin2022@gmail.com'}
             {...register('email', { required: true })}
             // placeholder="Escriba su usuario"
           />
@@ -65,6 +67,7 @@ const ModalLogin = (props: any) => {
             className="w-full appearance-none border-2 border-gray-200 rounded-lg px-4 py-2 text-primary-800 leading-tight placeholder-primary-800 focus:outline-none focus:bg-white focus:border-primary-500"
             id="login-password"
             type="password"
+            defaultValue={'admin'}
             {...register('password', { required: true })}
             // placeholder="Escriba su contraseña"
           />
